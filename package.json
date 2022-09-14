@@ -1,13 +1,17 @@
 {
-  "name": "@mladenilic/channel-messanger",
+  "name": "@mladenilic/channel-messenger",
   "version": "1.0.0",
   "description": "MessageChannel wrapper with simpler API, message acknowledgement and message buffering.",
-  "main": "index.js",
+  "main": "lib/channel-messenger.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src -d lib"
   },
   "author": "Mladen Ilic",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mladenilic/channel-messanger"
+  },
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.18.10",
