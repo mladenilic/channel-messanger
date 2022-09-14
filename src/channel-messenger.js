@@ -55,7 +55,15 @@ const ChannelMessenger = class {
   }
 
   waitForConnection(target) {
-    target.addEventListener('message', this.#handleMessage.bind(this));
+    return new Promise(resolve => {
+      target.addEventListener('message', message => {
+        if (this.connected) return;
+
+        this.#handleMessage(message);
+
+        if (this.connected) resolve();
+      });
+    })
   }
 
   onMessage(listener) {

@@ -15,7 +15,8 @@
       const list = document.querySelector('ul');
       const messenger = new ChannelMessenger();
 
-      messenger.waitForConnection(window);
+      messenger.waitForConnection(window)
+        .then(() => console.log('connection received'));
 
       messenger.onMessage(message => {
         const listItem = document.createElement('li');
