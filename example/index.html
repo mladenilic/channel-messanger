@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>Channel messenger demo</title>
+  </head>
+  <body>
+    <h1>Channel messenger demo</h1>
+    <p id="message-output">Message not yet sent</p>
+
+    <form>
+      <label for="message-input">Send a message</label>
+      <input type="text" id="message-input" autofocus>
+      <button>Send Message</button>
+    </form>
+
+    <iframe src="page2.html" width='480' height='320'></iframe>
+    <script type="module" src="../src/channel-messenger.js"></script>
+    <script type="module">
+      import ChannelMessenger from '../src/channel-messenger.js';
+
+      const input = document.getElementById('message-input');
+      const output = document.getElementById('message-output');
+      const button = document.querySelector('button');
+      const iframe = document.querySelector('iframe');
+
+      const messenger = new ChannelMessenger();
+
+      messenger.onMessage((message) => {
+        output.innerHTML = message.payload;
+        input.value = '';
+      });
+
+      iframe.addEventListener('load', () => {
+        messenger.connect(iframe)
+          .then(() => console.log('connected'))
+          .catch(() => console.log('error connecting'));
+      });
+
+      button.addEventListener('click', e => {
+        e.preventDefault();
+
+        messenger.send(input.value)
+          .then(message => console.log('sent from the main page', message))
+          .catch(error => console.log('main page error', error));
+      });
+    </script>
+  </body>
+</html>

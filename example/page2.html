@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>My page title</title>
+  </head>
+  <body>
+    <ul></ul>
+    <script type="module" src="../src/channel-messenger.js"></script>
+    <script type="module">
+      import ChannelMessenger from '../src/channel-messenger.js';
+
+      const list = document.querySelector('ul');
+      const messenger = new ChannelMessenger();
+
+      messenger.waitForConnection(window);
+
+      messenger.onMessage(message => {
+        const listItem = document.createElement('li');
+        listItem.textContent = message.payload;
+        list.appendChild(listItem);
+
+        messenger.send(`Last message received: ${message.payload}`)
+          .then(message => console.log('sent from the iframe:', message))
+          .catch(error => console.log('iframe error', error));
+      });
+    </script>
+  </body>
+</html>
