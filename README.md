@@ -1,5 +1,7 @@
 # Channel Messenger
 
+[![npm version](https://badge.fury.io/js/@mladenilic%2Fchannel-messenger.svg)](https://badge.fury.io/js/@mladenilic%2Fchannel-messenger)
+
 [MessageChannel](https://developer.mozilla.org/en-US/docs/Web/API/MessageChannel) wrapper with simpler API, message acknowledgement and message buffering.
 
 Allows for simple 2 way communication between iframe and parent page. 
