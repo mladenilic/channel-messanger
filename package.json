@@ -1,6 +1,6 @@
 {
   "name": "@mladenilic/channel-messenger",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MessageChannel wrapper with simpler API, message acknowledgement and message buffering.",
   "main": "lib/channel-messenger.js",
   "scripts": {
